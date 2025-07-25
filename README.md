@@ -1,1 +1,1 @@
-# pattern-sense
+# pattern-sense: Classification_of_Fabric_patterns_using_Deeplearning
