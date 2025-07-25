@@ -1,0 +1,142 @@
+<!-- templates/results.html (Results Page) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result - Fabric Classifier</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #00a8ff;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 12px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .container {
+            padding: 60px;
+            text-align: center;
+        }
+        .container img {
+            max-width: 400px;
+            margin-top: 30px;
+            border-radius: 12px;
+            border: 3px solid #00a8ff;
+        }
+        .result-text {
+            margin-top: 30px;
+            font-size: 22px;
+            color: #2f3640;
+            font-weight: bold;
+        }
+        .btn {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #00a8ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #0097e6;
+        }
+        footer {
+            background-color: #2f3640;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 600px;
+            text-align: center;
+        }
+        .close {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+            color: #2f3640;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/predict">Predict</a>
+        <a onclick="showModal('aboutModal')">About Us</a>
+        <a onclick="showModal('contactModal')">Contact Us</a>
+    </nav>
+
+    <div class="container">
+        <h2>Prediction Result</h2>
+        <p class="result-text">The uploaded image is predicted as: <span style="color:#00a8ff">{{ prediction }}</span></p>
+        <img src="/{{ img_path }}" alt="Uploaded Fabric">
+        <br>
+        <a class="btn" href="/predict">Try Another Image</a>
+    </div>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('aboutModal')">&times;</span>
+            <h2>About Us</h2>
+            <p>Pattern Sense is a cutting-edge AI-powered fabric classification tool designed to streamline the textile industry. With advanced deep learning models trained on diverse textile patterns, our system identifies fabric designs such as floral, geometric, polka dots, and stripes — enabling efficient inventory management, e-commerce tagging, and quality control.</p>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('contactModal')">&times;</span>
+            <h2>Contact Us</h2>
+            <p>Email: support@patternsense.ai</p>
+            <p>Phone: +91 98765 43210</p>
+            <p>Address: 101, Textile Innovation Park, Bengaluru, India</p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Pattern Sense | All rights reserved.
+    </footer>
+
+    <script>
+        function showModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
